@@ -1,0 +1,226 @@
+/* ==========================================================================
+   Базовая сетка и разметка лейаута
+   ========================================================================== */
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f8fafc;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #1e293b;
+}
+
+/* ==========================================================================
+   Боковое меню (Sidebar)
+   ========================================================================== */
+.dashboard-sidebar {
+  width: 260px;
+  background-color: #0f172a; /* Глубокий темный оттенок */
+  color: #f1f5f9;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.5rem;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+}
+
+.sidebar-brand {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #38bdf8; /* Голубой акцент */
+  margin-bottom: 2rem;
+  padding-left: 0.5rem;
+}
+
+.sidebar-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-item {
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.sidebar-item:hover {
+  background-color: #1e293b;
+  color: #f1f5f9;
+}
+
+.sidebar-item.active {
+  background-color: #38bdf8;
+  color: #0f172a;
+  font-weight: 600;
+}
+
+/* ==========================================================================
+   Основная контентная область (Main & Header)
+   ========================================================================== */
+.dashboard-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.dashboard-header {
+  height: 70px;
+  background-color: #ffffff;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #475569;
+  background-color: #f1f5f9;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+}
+
+/* ==========================================================================
+   Контент страницы и секции
+   ========================================================================== */
+.dashboard-content {
+  padding: 2rem;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.dashboard-content h2 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #0f172a;
+}
+
+/* Сообщение от сервера */
+.server-response {
+  padding: 1rem 1.25rem;
+  border-radius: 0.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  font-size: 0.95rem;
+}
+
+/* Сетка блогов */
+.blog-section {
+  margin-top: 2rem;
+}
+
+.blog-section h3 {
+  font-size: 1.25rem;
+  color: #334155;
+  margin-bottom: 1rem;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.blog-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.75rem;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.blog-card h3 {
+  font-size: 1.1rem;
+  color: #0f172a;
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.blog-card p {
+  color: #64748b;
+  font-size: 0.925rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ==========================================================================
+   Кнопки
+   ========================================================================== */
+.btn-dash {
+  padding: 0.625rem 1.25rem;
+  border-radius: 0.5rem;
+  border: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: filter 0.2s ease, transform 0.1s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-dash:hover {
+  filter: brightness(90%);
+}
+
+.btn-dash:active {
+  transform: scale(0.98);
+}
+
+/* ==========================================================================
+   Адаптивность для мобильных устройств
+   ========================================================================== */
+@media (max-width: 768px) {
+  .dashboard-layout {
+    flex-direction: column;
+  }
+
+  .dashboard-sidebar {
+    width: 100%;
+    box-sizing: border-box;
+    gap: 1rem;
+  }
+
+  .sidebar-brand {
+    margin-bottom: 1rem;
+  }
+
+  .dashboard-header {
+    padding: 0 1rem;
+    height: auto;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+  
+  .user-profile {
+    justify-content: center;
+  }
+
+  .dashboard-content {
+    padding: 1rem;
+  }
+}

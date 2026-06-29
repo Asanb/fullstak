@@ -1,0 +1,47 @@
+services:
+  db:
+    image: postgres:15-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: my_project_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: your_secure_db_password
+    ports:
+      - "5432:5432"
+
+  backend:
+    build: ./backend
+    # Добавляем collectstatic перед запуском gunicorn
+    command: >
+      sh -c "python manage.py migrate &&
+             python manage.py collectstatic --noinput &&
+             gunicorn --bind 0.0.0.0:8000 myproject.wsgi:application"
+    environment:
+      - DB_NAME=my_project_db
+      - DB_USER=postgres
+      - DB_PASSWORD=your_secure_db_password
+      - DB_HOST=db
+      - DB_PORT=5432
+      - SECRET_KEY=django-super-secret-key-12345
+      - DEBUG=True
+    ports:
+      - "8000:8000"
+    volumes:
+      - django_static:/app/static # Бэкенд складывает стили сюда
+    depends_on:
+      - db
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "80:80"
+    volumes:
+      - django_static:/usr/share/nginx/html/static:ro # Фронтенд забирает стили отсюда
+    depends_on:
+      - backend
+
+# Объявляем общую папку в самом низу файла
+volumes:
+  postgres_data:
+  django_static: 
